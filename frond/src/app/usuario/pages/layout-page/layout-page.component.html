@@ -1,0 +1,10 @@
+<p-toast></p-toast>
+<div class="layout" style="display: flex; flex-direction: column; height: 100vh;">
+    <app-slider-menu></app-slider-menu>
+    <div class="content" [ngStyle]="{'flex': '1', 'overflow': 'auto', 'margin-left': visible ? '210px' : '0', 'transition': 'margin-left 0.3s ease-out'}">
+        <app-header></app-header>
+        <div class="container p-2" style="flex: 1; overflow: auto;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

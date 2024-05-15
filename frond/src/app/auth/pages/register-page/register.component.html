@@ -1,0 +1,91 @@
+<div class="flex justify-content-center align-items-center" style="height: 100vh; display: flex;">
+
+    <div  style="overflow-y: auto; max-height: 90vh; scrollbar-width: thin; scrollbar-color: #888 #f1f1f1;">
+      <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+        <p-card header="Registro" [style]="{ width: '360px' }">
+            <div class="field">
+                <label for="nombres">Nombres</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="nombres"
+                  class="w-full"
+                  name="nombres"
+                  placeholder="Nombres"
+                />
+                <small
+                  *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)"
+                  class="block p-error"
+                >
+                  <div *ngIf="nombres.errors?.['required']">El nombre es requerido.</div>
+    
+                </small>
+              </div>
+              <div class="field">
+                <label for="apellidos">Apellidos</label>
+                <input
+                  type="text"
+                  pInputText
+                  formControlName="apellidos"
+                  class="w-full"
+                  name="apellidos"
+                  placeholder="Apellidos"
+                />
+                <small
+                  *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)"
+                  class="block p-error"
+                >
+                  <div *ngIf="apellidos.errors?.['required']">El apellido es requerido.</div>
+                </small>
+              </div>
+          <div class="field">
+            <label for="correo">Correo de usuario</label>
+            <input
+              type="email"
+              pInputText
+              formControlName="correo"
+              class="w-full"
+              name="correo"
+              placeholder="Correo de usuario"
+            />
+            <small
+              *ngIf="correo.invalid && (correo.dirty || correo.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="correo.errors?.['required']">El correo es requerido.</div>
+                <div *ngIf="correo.errors?.['email']">El correo no es válido.</div>
+            </small>
+          </div>
+       
+         
+          <div class="field">
+            <label for="contrasena">Contraseña</label>
+            <input
+              type="password"
+              pInputText
+              formControlName="contrasena"
+              class="w-full"
+              name="contrasena"
+              placeholder="Type your password"
+            />
+            <small
+              *ngIf="contrasena.invalid && (contrasena.dirty || contrasena.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="contrasena.errors?.['required']">La contraseña es requerida.</div>
+              <div *ngIf="contrasena.errors?.['minlength'] || contrasena.errors?.['maxlength']">La contraseña debe tener entre 1 y 10 caracteres.</div>
+              <div *ngIf="contrasena.errors?.['pattern']">Debe contener al menos una letra mayúscula, un número y uno de los siguientes caracteres especiales &#64; o _.</div>
+            </small>
+          </div>
+          <p-button
+            label="Registrarse"
+            styleClass="w-full"
+            [disabled]="registerForm.invalid"
+            type="submit"
+          ></p-button>
+          <div class="mt-2">Ya tiene cuenta? <a routerLink="/auth/login">Login</a></div>
+        </p-card>
+      </form>
+    </div>
+  </div>
+  

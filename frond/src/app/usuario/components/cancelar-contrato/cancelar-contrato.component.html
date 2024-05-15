@@ -1,0 +1,44 @@
+<app-loading-scream [isLoading]="isLoading"></app-loading-scream>
+<div>
+  
+        <div class="flex flex-column md:flex-row">
+            <div style="width: 75%">
+                <p-table [value]="listContracts" selectionMode="single" [(selection)]="selectContract" (onRowClick)="onContractChange($event)">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Identificación</th>
+                            <th>Servicio</th>
+                            <th>Método de Pago</th>
+                            <th>Estado</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-contract>
+                        <tr [pSelectableRow]="contract">
+                            <td>{{contract.client_clientid.name}}</td>
+                            <td>{{contract.client_clientid.lastname}}</td>
+                            <td>{{contract.client_clientid.identification}}</td>
+                            <td>{{contract.service_serviceid.servicedescription}}</td>
+                            <td>{{contract.methodpayment_methodpaymentid.description}}</td>
+                            <td>{{contract.statuscontract_statuscontractid.description}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div>
+                <p-divider layout="vertical" styleClass="hidden md:flex">
+                </p-divider>
+            </div>
+            <div style="width: 25%">
+
+                <div class="w-full md:w-full">
+                    <p-button label="Calcelar contrato" styleClass="w-full" severity="warning"
+                    [disabled]=" !selectContract "
+                    (click)="cancelContract()"
+                    ></p-button>
+                </div>
+            </div>
+        </div>
+
+</div>

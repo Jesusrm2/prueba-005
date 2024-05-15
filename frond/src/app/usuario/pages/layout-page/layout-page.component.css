@@ -1,0 +1,4 @@
+.layout .sidebar-visible ~ .content {
+    transform: translateX(250px); /* Ajusta este valor al ancho de tu sidebar */
+    transition: transform 0.3s ease-out; /* Ajusta este valor a la duración de la animación que desees */
+  }

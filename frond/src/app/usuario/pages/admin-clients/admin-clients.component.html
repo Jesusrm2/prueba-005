@@ -1,0 +1,46 @@
+<app-loading-scream [isLoading]="isLoading"></app-loading-scream>
+<div class="grid-container">
+    <div class="content">
+        <p-table [value]="listClients" [tableStyle]="{ 'min-width': '30rem' }">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button type="button" pButton pRipple icon="pi pi-plus" class="p-button-info ml-auto"
+                        pTooltip="Agregar usuario" tooltipPosition="left" (click)="formClient()"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Identificación</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Referencia</th>
+                    <th>Acciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client>
+                <tr>
+                    <td>{{client.name}} {{client.lastname}}</td>
+                    <td>{{client.identification}}</td>
+                    <td>{{client.email}}</td>
+                    <td>{{client.phonenumber}}</td>
+                    <td>{{client.address}}</td>
+                    <td>{{client.referenceaddress}}</td>
+                    <td>
+                        <div class="my-button-group">
+                            <div class="flex">
+                                <p-button [style.margin-right.px]="10" [raised]="true" severity="help"
+                                    icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="left"
+                                    (click)="formClient(client)"></p-button>
+                                <p-button [raised]="true" severity="danger" icon="pi pi-trash" pTooltip="Eliminar"
+                                    tooltipPosition="left" (click)="deleteClient(client)"></p-button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>

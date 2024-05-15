@@ -1,0 +1,96 @@
+<app-loading-scream [isLoading]="isLoading"></app-loading-scream>
+<div class="grid-container">
+    <p-tabView>
+        <p-tabPanel header="Nuevo contrato">
+
+            <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="field" style="width: 45%;">
+                        <label for="startdate">Inicio</label>
+                        <input type="date" pInputText formControlName="startdate" class="w-full" name="startdate"
+                            placeholder="Ingrese la fecha de inicio" />
+                        <small *ngIf="startdate.invalid && (startdate.dirty || startdate.touched)"
+                            class="block p-error">
+                            <div *ngIf="startdate.errors?.['required']">La fecha de inicio es requerida.</div>
+                        </small>
+                    </div>
+
+                    <div class="field" style="width: 45%;">
+                        <label for="enddate">Fin del contrato</label>
+                        <input type="date" pInputText formControlName="enddate" class="w-full" name="enddate"
+                            placeholder="Ingrese la fecha de fin" />
+                        <small *ngIf="enddate.invalid && (startdate.dirty || startdate.touched)" class="block p-error">
+                            <div *ngIf="enddate.errors?.['required']">La fecha de fin es requerida.</div>
+
+                        </small>
+                    </div>
+                </div>
+                <div class="flex flex-column md:flex-row">
+                    <div class="w-full md:w-full ">
+                        <p-listbox [options]="listTurnos" (onChange)="onTurnoChane($event)" optionLabel="label"
+                            [style]="{ width: '100%' }" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                            [filter]="true" scrollHeight="250px"[filterPlaceHolder]="'Busque o seleccione un turno...'"/>
+                    </div>
+                    <div>
+                        <p-divider layout="vertical" styleClass="hidden md:flex">
+                        </p-divider>
+                    </div>
+                    <div class="w-full md:w-full">
+                        <p-listbox [options]="listClientes" (onChange)="onClienteChange($event)" optionLabel="label"
+                            [style]="{ width: '100%' }" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                            [filter]="true" scrollHeight="250px" [filterPlaceHolder]="'Busque o seleccione un cliente...'" />
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                    <div class="field" style="width: 32%;">
+                        <label for="serviceid" style="margin-bottom: 10px;">Servicios</label>
+                        <p-dropdown formControlName="serviceid" [options]="servicesSelect" optionLabel="name"
+                            optionValue="id" placeholder="Selecciona un servicio"
+                            [style]="{'width': '100%'}"></p-dropdown>
+                        <small *ngIf="serviceid.invalid && (serviceid.dirty || serviceid.touched)"
+                            class="block p-error">
+                            <div *ngIf="serviceid.errors?.['required']">El rol de usuario es requerido.</div>
+                        </small>
+                    </div>
+                    <div class="field" style="width: 32%;">
+                        <label for="methodpaymentid" style="margin-bottom: 10px;">Metodo de pago</label>
+                        <p-dropdown formControlName="methodpaymentid" [options]="methodPaymentsSelect"
+                            optionLabel="name" optionValue="id" placeholder="Selecciona un metodo de pago"
+                            [style]="{'width': '100%'}"></p-dropdown>
+                        <small *ngIf="methodpaymentid.invalid && (methodpaymentid.dirty || methodpaymentid.touched)"
+                            class="block p-error">
+                            <div *ngIf="methodpaymentid.errors?.['required']">El metodo de pago es requerido.</div>
+                        </small>
+                    </div>
+                    <div class="field" style="width: 32%;">
+                        <label for="devices" style="margin-bottom: 10px;">Dispositivos</label>
+                        <p-multiSelect formControlName="devices" [options]="devicesSelect" optionLabel="name"
+                            optionValue="id" placeholder="Selecciona un dispositivo"
+                            [style]="{'width': '100%'}"></p-multiSelect>
+                        <small *ngIf="devices.invalid && (devices.dirty || devices.touched)" class="block p-error">
+                            <div *ngIf="devices.errors?.['required']">El dispositivo es requerido.</div>
+                        </small>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <p-button label="Guardar" styleClass="w-full" severity="success"
+                        [disabled]="registerForm.invalid || !turnoSelected || !clienteSelected"
+                        type="submit"></p-button>
+                </div>
+            </form>
+
+
+
+        </p-tabPanel>
+        <p-tabPanel header="Cambio de servicio">
+           <app-cambio-servicio></app-cambio-servicio>
+        </p-tabPanel>
+        <p-tabPanel header="Cambiar metodo de pago">
+            <app-cambio-metodo-pago></app-cambio-metodo-pago>
+        </p-tabPanel>
+        <p-tabPanel header="Cancelar contrato">
+            <app-cancelar-contrato></app-cancelar-contrato>
+        </p-tabPanel>
+    </p-tabView>
+
+</div>

@@ -1,0 +1,139 @@
+<app-loading-scream [isLoading]="isLoading"></app-loading-scream>
+<p-panel header="Asignar turno por caja" class="p-1">
+
+  <div class="flex" style="display: flex; justify-content: space-between;">
+    <p>
+      <span>Seleccione la caja y el turno que se le asigna</span>
+    </p>
+  
+    <div>
+      <p-button type="button" icon="pi pi-plus" class="p-button-info" pTooltip="Agregar turno" label="Turno"
+        tooltipPosition="left" [style]="{marginRight: '10px'}" (onClick)="navigateToTurno()"></p-button>
+      <p-button type="button" icon="pi pi-plus" class="p-button-info" pTooltip="Agregar caja" label="Caja"
+        tooltipPosition="left"  [style]="{marginRight: '10px'}" (onClick)="navigateToCaja()"></p-button>
+        <p-button type="button" icon="pi pi-save" class="p-button-info" pTooltip="Asignar" label="Asignar turno a caja" 
+        tooltipPosition="left"  [style]="{marginRight: '10px'}" severity="success" [disabled]="!selectedTurno || !selectedCaja" (click)="assignTurnoToCaja()"></p-button>
+    </div>
+</div>
+</p-panel>
+
+
+
+<div class="grid">
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Turnos" [toggleable]="true">
+
+      <p-listbox [options]="turnos" (onChange)="onTurnoChange($event)" optionLabel="label" [style]="{ width: '100%' }"
+        [virtualScroll]="true"   [virtualScrollItemSize]="38" [filter]="true" scrollHeight="250px" />
+
+      <p-button icon="pi pi-trash" styleClass="p-button-danger" class="p-button-rounded" [style]="{float: 'right'}" [disabled]="!selectedTurno" (click)="deleteTurno()"></p-button>
+
+    </p-fieldset>
+</div>
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Cajas" [toggleable]="true">
+
+      <p-listbox [options]="cajas" (onChange)="onCajaChange($event)" optionLabel="label" [style]="{ width: '100%' }"
+        [virtualScroll]="true"   [virtualScrollItemSize]="38" [filter]="true" scrollHeight="250px" />
+        <p-button icon="pi pi-trash" styleClass="p-button-danger" class="p-button-rounded" [style]="{float: 'right'}" [disabled]="!selectedCaja" (click)="deleteCaja()"></p-button>
+
+
+    </p-fieldset>
+  </div>
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Agregar turno" [toggleable]="true" id="agregarTurno">
+      <form [formGroup]="turnoForm" (ngSubmit)="submitTurno()">
+        <div class="field">
+          <label for="description">Descripción del turno</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="description"
+            class="w-full"
+            name="description"
+            placeholder="Ingrese la descripción del turno"
+          />
+          <small
+            *ngIf="description.invalid && (description.dirty || description.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="description.errors?.['required']">La descripción es requerida.</div>
+            <div *ngIf="description.errors?.['invalidDescription']">La descripción debe tener 2 letras mayúsculas y 4 números.</div>
+          </small>
+        </div>
+        <div class="field">
+          <label for="date">Fecha</label>
+          <input
+            type="date"
+            pInputText
+            formControlName="date"
+            class="w-full"
+            name="date"
+          />
+          <small
+            *ngIf="date.invalid && (date.dirty || date.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="date.errors?.['required']">La fecha es requerida.</div>
+          </small>
+        </div>
+      
+        <p-button
+          label="Agregar turno"
+          styleClass="w-full"
+          [disabled]="turnoForm.invalid"
+          type="submit"
+        ></p-button>
+      </form>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Agregar caja" [toggleable]="true"  id="agregarCaja">
+      <form [formGroup]="cajaForm" (ngSubmit)="submitCaja()">
+        <div class="field">
+          <label for="cashdescription">Descripción de la caja</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="cashdescription"
+            class="w-full"
+            name="cashdescription"
+            placeholder="Ingrese la descripción de la caja"
+          />
+          <small
+            *ngIf="description.invalid && (description.dirty || description.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="cashdescription.errors?.['required']">La descripción es requerida.</div>
+          
+          </small>
+        </div>
+        <div class="field">
+          <label for="active">Estado</label>
+          <p-dropdown
+            formControlName="active"
+            [style]="{'width': '100%'}"
+            name="active"
+            [options]="[{label: 'ACTIVO', value: 'A'}, {label: 'INACTIVO', value: 'I'}]"
+          ></p-dropdown>
+          <small
+            *ngIf="active.invalid && (active.dirty || active.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="active.errors?.['required']">El estado es requerido.</div>
+          </small>
+        </div>
+      
+        <p-button
+          label="Agregar turno"
+          styleClass="w-full"
+          [disabled]="cajaForm.invalid"
+          type="submit"
+        ></p-button>
+      </form>
+
+    </p-fieldset>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<p-panel header="Pagina principal" class="p-1">
+  <p>
+   Bienvenido a la pagina principal de la aplicacion
+  </p>
+  <p *ngIf="user">
+      <strong>Nombre de usuario:</strong> {{user.username}} <br>
+      <strong>Email:</strong> {{user.email}} <br>
+      <strong>Fecha de creación:</strong> {{user.creationdate}}
+  </p>
+</p-panel>
+ 

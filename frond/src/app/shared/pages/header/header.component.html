@@ -1,0 +1,12 @@
+<p-menubar [style]="{'background-color': '#343a40', 'color': '#17a2b8', 'flex-shrink': '0'}">
+  <ng-template pTemplate="start">
+    <div style="display: flex; align-items: center;" *ngIf="!visible">
+      <button pButton icon="pi pi-bars" [style]="{'background-color': '#17a2b8', 'color': 'white'}" (click)="openSidebar()"></button>
+    </div>
+  </ng-template>
+  <ng-template>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <button pButton label="Logout" [style]="{'background-color': '#dc3545', 'color': 'white'}" (click)="onLogout()"></button>
+  </ng-template>
+</p-menubar>

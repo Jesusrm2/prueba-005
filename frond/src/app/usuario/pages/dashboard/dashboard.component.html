@@ -1,0 +1,33 @@
+<p-table [value]="listAttention">
+    <ng-template pTemplate="header">
+        <tr>
+            <th colspan="4">Información del Cliente</th>
+            <th colspan="3">Información del Cajero</th>
+            <th colspan="2">Información del Turno</th>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Identificación</th>
+            <th>Email</th>
+            <th>Nombre de Usuario</th>
+            <th>Email de Usuario</th>
+            <th>Descripción de Caja</th>
+            <th>Descripción del Turno</th>
+            <th>Fecha del Turno</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-attention>
+        <tr>
+            <td>{{attention.attention.client.name}}</td>
+            <td>{{attention.attention.client.lastname}}</td>
+            <td>{{attention.attention.client.identification}}</td>
+            <td>{{attention.attention.client.email}}</td>
+            <td>{{attention.user.username}}</td>
+            <td>{{attention.user.email}}</td>
+            <td>{{attention.user.usercash[0]?.cashdescription}}</td>
+            <td>{{attention.attention.turn.description}}</td>
+            <td>{{attention.attention.turn.date}}</td>
+        </tr>
+    </ng-template>
+</p-table>

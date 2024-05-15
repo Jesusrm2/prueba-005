@@ -1,0 +1,41 @@
+<app-loading-scream [isLoading]="isLoading"></app-loading-scream>
+
+<p-panel header="Asignar turno por caja" class="p-1">
+
+    <div class="flex" style="display: flex; justify-content: space-between;">
+      <p>
+        <span>Seleccione la caja y el usuario que se le asigna</span>
+      </p>
+    
+      <div>
+          <p-button type="button" icon="pi pi-save" class="p-button-info" pTooltip="Asignar" label="Asignar turno a caja" 
+          tooltipPosition="left"  [style]="{marginRight: '10px'}" severity="success" [disabled]="!selectedUsuarioCajero || !selectedCaja" (click)="asignarCajaUsuario()"></p-button>
+      </div>
+  </div>
+
+
+  <div class="flex flex-column md:flex-row">
+    <div class="w-full md:w-full ">
+       
+
+    <p-listbox [options]="usuariosCajeros" (onChange)="onUsuarioCajeroChange($event)" optionLabel="label" [style]="{ width: '100%' }"
+    [virtualScroll]="true"   [virtualScrollItemSize]="38" [filter]="true" scrollHeight="250px" />
+
+    </div>
+    <div >
+        <p-divider layout="vertical" styleClass="hidden md:flex">
+        </p-divider>
+    </div>
+    <div class="w-full md:w-full">
+        <p-listbox [options]="cajas" (onChange)="onCajaChange($event)" optionLabel="label" [style]="{ width: '100%' }"
+        [virtualScroll]="true"   [virtualScrollItemSize]="38" [filter]="true" scrollHeight="250px" />
+   
+    
+    </div>
+</div>
+
+
+
+
+  </p-panel>
+  

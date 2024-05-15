@@ -1,0 +1,80 @@
+<div style="overflow-y: auto; max-height: 100%;">
+    <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+      <p-card header="{{ clientForm ? 'Actualizar Cliente' : 'Agregar Cliente' }}" [style]="{ width: '100%' }">
+        
+        <div style="display: flex; justify-content: space-between;">
+            <div class="field" style="width: 45%;">
+                <label for="name">Nombre del cliente</label>
+          <input type="text" pInputText formControlName="name" class="w-full" name="name" placeholder="Ingrese el nombre del cliente" />
+          <small *ngIf="name.invalid && (name.dirty || name.touched)" class="block p-error">
+            <div *ngIf="name.errors?.['required']">El nombre de usuario es requerido.</div>
+            <div *ngIf="name.errors?.['minlength'] || name.errors?.['maxlength']">El nombre de usuario debe tener entre 8 y 20 caracteres.</div>
+          </small>
+            </div>
+            <div class="field" style="width: 45%;">
+                <label for="lastname">Apellido del cliente</label>
+                <input type="text" pInputText formControlName="lastname" class="w-full" name="lastname" placeholder="Ingrese el apellido del cliente" />
+                <small *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="block p-error">
+                  <div *ngIf="lastname.errors?.['required']">El apellido del cliente es requerido.</div>
+                  <div *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlength']">El apellido del cliente debe tener entre 8 y 20 caracteres.</div>
+                </small>
+            </div>
+          </div>
+ 
+        <div style="display: flex; justify-content: space-between;">
+            <div class="field" style="width: 45%;">
+                <label for="identification">Identificación del cliente</label>
+                <input type="text" pInputText  [disabled]="true" formControlName="identification" class="w-full" name="identification" placeholder="Ingrese la identificación del cliente" />
+                <small *ngIf="identification.invalid && (identification.dirty || identification.touched)" class="block p-error">
+                  <div *ngIf="identification.errors?.['required']">La identificación del cliente es requerida.</div>
+                  <div *ngIf="identification.errors?.['minlength'] || identification.errors?.['maxlength']">La identificación del cliente debe tener entre 8 y 20 caracteres.</div>
+                </small>
+            </div>
+
+            
+            <div class="field" style="width: 45%;">
+                <label for="phonenumber">Número de teléfono del cliente</label>
+                <input type="text" pInputText formControlName="phonenumber" class="w-full" name="phonenumber" placeholder="Ingrese el número de teléfono del cliente" />
+                <small *ngIf="phonenumber.invalid && (phonenumber.dirty || phonenumber.touched)" class="block p-error">
+                  <div *ngIf="phonenumber.errors?.['required']">El número de teléfono del cliente es requerido.</div>
+                  <div *ngIf="phonenumber.errors?.['minlength'] || phonenumber.errors?.['maxlength']">El número de teléfono del cliente debe tener entre 8 y 20 caracteres.</div>
+                </small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Correo electrónico del cliente</label>
+            <input type="email" pInputText formControlName="email" class="w-full" name="email" placeholder="Ingrese el correo electrónico del cliente" />
+            <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+              <div *ngIf="email.errors?.['required']">El correo electrónico del cliente es requerido.</div>
+              <div *ngIf="email.errors?.['email']">El correo electrónico del cliente debe ser válido.</div>
+            </small>
+          </div>
+        <div class="field">
+          <label for="address">Dirección del cliente</label>
+          <input type="text" pInputText formControlName="address" class="w-full" name="address" placeholder="Ingrese la dirección del cliente" />
+          <small *ngIf="address.invalid && (address.dirty || address.touched)" class="block p-error">
+            <div *ngIf="address.errors?.['required']">La dirección del cliente es requerida.</div>
+            <div *ngIf="address.errors?.['minlength'] || address.errors?.['maxlength']">La dirección del cliente debe tener entre 8 y 20 caracteres.</div>
+          </small>
+        </div>
+
+        <div class="field">
+          <label for="referenceaddress">Referencia de la dirección del cliente</label>
+          <input type="text" pInputText formControlName="referenceaddress" class="w-full" name="referenceaddress" placeholder="Ingrese la referencia de la dirección del cliente" />
+          <small *ngIf="referenceaddress.invalid && (referenceaddress.dirty || referenceaddress.touched)" class="block p-error">
+            <div *ngIf="referenceaddress.errors?.['required']">La referencia de la dirección del cliente es requerida.</div>
+            <div *ngIf="referenceaddress.errors?.['minlength'] || referenceaddress.errors?.['maxlength']">La referencia de la dirección del cliente debe tener entre 8 y 20 caracteres.</div>
+          </small>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+          <p-button label="Cancelar" styleClass="w-full"  severity="danger" type="button" (click)="cancel()"></p-button>  
+          <p-button [label]="clientForm? 'Actualizar' : 'Guardar'" styleClass="w-full" severity="success" [disabled]="registerForm.invalid" type="submit"></p-button>
+         
+        </div>
+       
+     
+      </p-card>
+    </form>
+  </div>
